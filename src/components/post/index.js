@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ButtonSave from '../../components/button';
 import ButtonNewPost from '../../components/button';
 import TextArea from '../../components/textarea';
-import { DivNewPost } from './styles';
+import { DivNewPost, DivButtonNewPost } from './styles';
 import apiService from '../../services/api';
 import Swal from 'sweetalert2';
 
@@ -46,19 +46,25 @@ function Post({ ...props }) {
 	}
 
 	function newPost() {
+		var divButtonNewPost = document.getElementById("buttonNewPost");
 		var divPost = document.getElementById("newPost");
+		
+		divButtonNewPost.style.display = "none";
 		divPost.style.display = "block";
 	}
 
 	return (
 		<>
-			<ButtonNewPost textDefault="Criar novo post" handleClicked={() => newPost()} />
+			<DivButtonNewPost id="buttonNewPost">
+				<ButtonNewPost textDefault="Novo post" handleClicked={() => newPost()} />
+			</DivButtonNewPost>
+
 			<DivNewPost id="newPost">
 				<table width="100%">
 					<tbody>
 						<tr>
 							<td>
-								<TextArea name="post" id="post" placeholder="Escreva aqui seu post" rows="5" cols="20" />								
+								<TextArea name="post" id="post" placeholder="Escreva aqui seu post" rows="5" cols="20" />
 							</td>
 						</tr>
 
